@@ -6,7 +6,7 @@ use parent qw(Exporter Digest::base);
 
 use MIME::Base64 ();
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 $VERSION = eval $VERSION;
 
 eval {
@@ -24,33 +24,6 @@ our @EXPORT_OK = qw(
     blake_384 blake_384_hex blake_384_base64
     blake_512 blake_512_hex blake_512_base64
 );
-
-# TODO: convert to C.
-sub blake_224_hex  { unpack 'H*', blake_224(@_) }
-sub blake_256_hex  { unpack 'H*', blake_256(@_) }
-sub blake_384_hex  { unpack 'H*', blake_384(@_) }
-sub blake_512_hex  { unpack 'H*', blake_512(@_) }
-
-sub blake_224_base64 {
-    my $b64 = MIME::Base64::encode(blake_224(@_), '');
-    $b64 =~ s/=+$//g;
-    return $b64;
-}
-sub blake_256_base64 {
-    my $b64 = MIME::Base64::encode(blake_256(@_), '');
-    $b64 =~ s/=+$//g;
-    return $b64;
-}
-sub blake_384_base64 {
-    my $b64 = MIME::Base64::encode(blake_384(@_), '');
-    $b64 =~ s/=+$//g;
-    return $b64;
-}
-sub blake_512_base64 {
-    my $b64 = MIME::Base64::encode(blake_512(@_), '');
-    $b64 =~ s/=+$//g;
-    return $b64;
-}
 
 sub add_bits {
     my ($self, $data, $bits) = @_;
@@ -75,8 +48,8 @@ Digest::BLAKE - Perl interface to the BLAKE digest algorithm
     use Digest::BLAKE qw(blake_256 blake_256_hex blake_256_base64);
 
     $digest = blake_256($data);
-    $digest = blake_hex_256($data);
-    $digest = blake_base64_256($data);
+    $digest = blake_256_hex($data);
+    $digest = blake_256_base64($data);
 
     # Object-oriented interface
     use Digest::BLAKE;
@@ -156,6 +129,8 @@ Returns the algorithm used by the object.
 =head1 SEE ALSO
 
 L<Digest>
+
+L<Task::Digest>
 
 L<http://131002.net/blake/>
 
