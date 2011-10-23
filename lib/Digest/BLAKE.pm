@@ -4,9 +4,7 @@ use strict;
 use warnings;
 use parent qw(Exporter Digest::base);
 
-use MIME::Base64 ();
-
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 $VERSION = eval $VERSION;
 
 eval {
@@ -179,7 +177,7 @@ L<http://search.cpan.org/dist/Digest-BLAKE/>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2010 gray <gray at cpan.org>, all rights reserved.
+Copyright (C) 2010-2011 gray <gray at cpan.org>, all rights reserved.
 
 This library is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
